@@ -13,7 +13,7 @@ function AddDeferralToQueue(priority,cb,resource)
     end
 
     for k,e in pairs(deferrals) do
-        defcache[k] = e
+        table.insert(defcache,e)
     end
 
     if push then
@@ -28,9 +28,9 @@ function Proceed(name,ctk,def,_S,count)
         def.done()
         return
     end
-
+    
     count = count + 1
-
+    
     deferrals[count][1](name,ctk,def,_S,count,Proceed)
 end
 
