@@ -45,3 +45,17 @@ AddEventHandler("playerConnecting",function (name,ctk,def)
 end)
 
 exports("AddDeferralToQueue", AddDeferralToQueue)
+
+AddEventHandler("onResourceStop",function (res)
+    local index = 0
+    for k,e in pairs(deferrals) do
+        if e[2] == res then
+           index = k
+           break 
+        end
+    end
+
+    if index ~= 0 then
+        table.remove(deferrals,index)
+    end
+end)
